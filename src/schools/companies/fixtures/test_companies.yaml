@@ -1,0 +1,5 @@
+- fields: {created: !!timestamp '2009-07-14 13:44:12.921745', dic: '', email: '',
+    fax: '', ic_dph: '', ico: '', mobile: '', name: vapc, phone: '', postal: '', street: '',
+    town: '', updated: !!timestamp '2009-07-14 13:44:12.921783', www: ''}
+  model: companies.company
+  pk: 1

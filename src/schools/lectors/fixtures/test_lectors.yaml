@@ -1,0 +1,27 @@
+- fields: {created: !!timestamp '2009-07-14 14:18:04.203696', email: '',
+    fax: '', first_name: tomas, last_name: drencak, mobile: '', phone: '', postal: '',
+    street: '', title: '', town: '', updated: !!timestamp '2009-07-14 14:18:57.871597',
+    www: ''}
+  model: lectors.lector
+  pk: 1
+- fields: {contract_number: '10', hour_rate: '300', lector: 1, 
+start: 2008-01-01, end: 2008-01-01}
+  model: lectors.contract
+  pk: 1
+- fields: {contract: 1, course: 1, hour_rate: '500' }
+  model: lectors.hourrate
+  pk: 1
+- fields: {contract_number: '100', hour_rate: '400', lector: 1, 
+start: 2008-01-02, end: 2008-01-10}
+  model: lectors.contract
+  pk: 2
+- fields: {contract: 2, course: 1, hour_rate: '600' }
+  model: lectors.hourrate
+  pk: 2
+- fields: {lector: 1, name: '', note: '', responsible: 1, slug: '1234'}
+  model: courses.course
+  pk: 1
+- fields: {lector: 1, name: '', note: '', responsible: 1, slug: '12345'}
+  model: courses.course
+  pk: 2
+  

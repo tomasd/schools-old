@@ -1,0 +1,19 @@
+{% extends "base_course.html" %}
+{% load i18n %}
+
+{% block body %}
+<ul>
+	<li>{% trans "Update course" %}</li>
+	<li><a href="{{ form.instance.course_members_url }}">{% trans "Members" %}</a></li>
+	<li><a href="{{ form.instance.course_lessons_url }}">{% trans "Lessons" %}</a></li>
+	<li><a href="{{ form.instance.course_expense_groups_url }}">{% trans "Expense groups" %}</a></li>
+</ul>
+
+<form action="." method="POST">
+	<fieldset>
+		<legend>{% trans "Edit course" %}</legend>
+	{{ form.as_p }}
+	<input type="submit" value="{% trans "Save" %}"/><input type="reset" value="{% trans "Reset" %}"/>
+	</fieldset>
+</form>
+{% endblock %}

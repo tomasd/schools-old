@@ -1,0 +1,17 @@
+{% extends "base_student.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url student-create %}">{% trans "Add student" %}</a>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for student in student_list %}
+		<tr>
+			<td><a href="{{ student.get_absolute_url }}">{{ student }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

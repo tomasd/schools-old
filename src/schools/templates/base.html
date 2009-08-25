@@ -1,0 +1,28 @@
+{% load i18n %}
+<html>
+<head>
+<style type="text/css">
+	fieldset {
+		padding: 1em;
+        border: 1px solid #97D2F5;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+	}
+</style>
+{% block base_head %}
+{% endblock %}
+</head>
+<body>
+<ul>
+	<li><a href="{% url buildings %}">{% trans "Buildings" %}</a></li>
+	<li><a href="{% url companies %}">{% trans "Companies" %}</a></li>
+	<li><a href="{% url courses %}">{% trans "Courses" %}</a></li>
+	<li><a href="{% url lectors %}">{% trans "Lectors" %}</a></li>
+	<li><a href="{% url tests %}">{% trans "Tests" %}</a></li>
+	<li><a href="{% url students %}">{% trans "Students" %}</a></li>
+</ul>
+<hr/>
+{% block base_body %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base_company.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url company-create %}">{% trans "Add company" %}</a>
+<form action="." method="POST">
+<div>{{ action_form.action.label_tag }}:{{ action_form.action }} <input type="submit" value="{% trans "Do!" %}"/></div>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for company in company_list %}
+		<tr>
+			<td><input type="checkbox" name="objects" value="{{ company.pk }}"/></td>
+			<td><a href="{{ company.get_absolute_url }}">{{ company }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</form>
+{% endblock %}

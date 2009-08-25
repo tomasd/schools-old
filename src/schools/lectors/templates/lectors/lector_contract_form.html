@@ -1,0 +1,39 @@
+{% extends "base_lector.html" %}
+{% load i18n %}
+
+{% block body %}
+<ul>
+	<li><a href="{{ lector.get_absolute_url }}">{% trans "Update lector" %}</a></li>
+	<li><a href="{{ lector.contracts_url }}">{% trans "Contracts" %}</a></li>
+</ul>
+
+<form action="." method="POST">
+	<fieldset>
+		<legend>{% trans "Edit contract" %}</legend>
+		<div>{{ form}}</div>
+		
+		<fieldset>
+		<legend>{% trans "Hour rates" %}</legend>
+		{{ hourrate_form.management_form }}
+		<ul>
+		{% for f in hourrate_form.forms %}
+			<li>{{ f }}</li>
+		{% endfor %}
+		</ul>
+		</fieldset>
+		<input type="submit" value="{% trans "Save" %}"/><input type="reset" value="{% trans "Reset" %}"/>
+	</fieldset>
+</form>
+
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for contract in contracts %}
+		<tr>
+			<td><a href="{{ contract.get_absolute_url }}">{{ contract }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base_test.html" %}
+{% load i18n %}
+
+{% block body %}
+<form action="." method="POST">
+	<fieldset>
+		<legend>{% trans "Create test" %}</legend>
+	{{ form.as_p }}
+	<input type="submit" value="{% trans "Save" %}"/><input type="reset" value="{% trans "Reset" %}"/>
+	</fieldset>
+</form>
+{% endblock %}

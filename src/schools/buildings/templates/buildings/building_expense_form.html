@@ -1,0 +1,18 @@
+{% extends "base_building.html" %}
+{% load i18n %}
+
+{% block body %}
+<ul>
+	<li><a href="{{ building.get_absolute_url }}">{% trans "Update building" %}</a></li>
+	<li><a href="{% url classrooms building_id=building.pk %}">{% trans "Building classrooms" %}</a></li> 
+	<li><a href="{% url building-expenses building_id=building.pk %}">{% trans "Building expenses" %}</a></li>
+</ul>
+
+<form action="." method="POST">
+	<fieldset>
+		<legend>{% trans "Edit building expense" %}</legend>
+	{{ form.as_p }}
+	<input type="submit" value="{% trans "Save" %}"/><input type="reset" value="{% trans "Reset" %}"/>
+	</fieldset>
+</form>
+{% endblock %}

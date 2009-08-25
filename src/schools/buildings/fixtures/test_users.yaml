@@ -1,0 +1,15 @@
+- fields:
+    date_joined: 2009-07-10 01:04:59.585538
+    email: tomas@drencak.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2009-07-14 10:50:33.236861
+    last_name: ''
+    password: sha1$251d7$48562373d6961e5f718a89336a0bdb53c07ae729
+    user_permissions: []
+    username: tomas
+  model: auth.user
+  pk: 1

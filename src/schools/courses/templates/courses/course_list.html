@@ -1,0 +1,21 @@
+{% extends "base_course.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url course-create %}">{% trans "Add course" %}</a>
+<form action="." method="POST">
+<div>{{ action_form.action.label_tag }}:{{ action_form.action }} <input type="submit" value="{% trans "Do!" %}"/></div>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for course in course_list %}
+		<tr>
+			<td><input type="checkbox" name="objects" value="{{ course.pk }}"/></td>
+			<td><a href="{{ course.get_absolute_url }}">{{ course }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</form>
+{% endblock %}

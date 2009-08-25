@@ -1,0 +1,33 @@
+{% extends "base_course.html" %}
+{% load i18n %}
+
+{% block body %}
+<ul>
+	<li><a href="{{ course.get_absolute_url }}">{% trans "Update course" %}</a></li>
+	<li><a href="{{ course.course_members_url }}">{% trans "Members" %}</a></li> 
+	<li><a href="{{ course.course_lessons_url }}">{% trans "Lessons" %}</a></li> 
+	<li><a href="{{ course.course_expense_groups_url }}">{% trans "Expense groups" %}</a></li> 
+</ul>
+
+{% load i18n %}
+
+<form action="." method="POST">
+	<fieldset>
+		<legend>{% trans "Create expense group" %}</legend>
+	{{ create_expense_group.as_p }}
+	<input type="submit" value="{% trans "Create expense group" %}"/>
+	</fieldset>
+</form>
+
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for expense_group in expense_group_list %}
+		<tr>
+			<td><a href="{{ expense_group.get_absolute_url }}">{{ expense_group }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

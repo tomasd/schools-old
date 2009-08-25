@@ -1,0 +1,12 @@
+- fields: {building: 1, created: !!timestamp '2009-07-14 11:30:57.408636', infinite_room: false,
+    name: u1, updated: !!timestamp '2009-07-14 11:47:29.347509'}
+  model: buildings.classroom
+  pk: 1
+- fields: {created: !!timestamp '2009-07-14 10:54:59.924184', name: kosil, postal: '04001',
+    street: snp, town: kosice, updated: !!timestamp '2009-07-14 10:55:05.327208'}
+  model: buildings.building
+  pk: 1
+- fields: {building: 1, created: !!timestamp '2009-07-14 13:07:00.927399', end: 2008-12-31,
+    price: '500', start: 2008-01-01, updated: !!timestamp '2009-07-14 13:18:05.975377'}
+  model: buildings.buildingmonthexpense
+  pk: 1

@@ -1,0 +1,24 @@
+{% extends "base_building.html" %}
+{% load i18n %}
+
+{% block body %}
+<ul>
+	<li><a href="{{ building.get_absolute_url }}">{% trans "Update building" %}</a></li>
+	<li><a href="{% url classrooms building_id=building.pk %}">{% trans "Building classrooms" %}</a></li> 
+	<li>{% trans "Building expenses" %}</li>
+</ul>
+
+
+<a href="{% url building-expense-create building_id=building.pk %}">{% trans "Add building expense" %}</a>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for expense in building_expense_list %}
+		<tr>
+			<td><a href="{{ expense.get_absolute_url }}">{{ expense }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

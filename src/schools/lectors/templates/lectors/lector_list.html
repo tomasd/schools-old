@@ -1,0 +1,20 @@
+{% extends "base_lector.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url lector-create %}">{% trans "Add lector" %}</a>
+<form action="." method="POST">
+<div>{{ action_form.action.label_tag }}:{{ action_form.action }} <input type="submit" value="{% trans "Do!" %}"/></div>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for lector in lector_list %}
+		<tr>
+			<td><input type="checkbox" name="objects" value="{{ lector.pk }}"/></td>
+			<td><a href="{{ lector.get_absolute_url }}">{{ lector }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,58 @@
+- fields: {slug: 1234, responsible: 1, lector: 1}
+  model: courses.course
+  pk: 1
+- fields: {}
+  model: lectors.lector
+  pk: 1
+- fields: {}
+  model: students.student
+  pk: 1
+- fields: {classroom: 1, course: 1, 
+    end: !!timestamp '2008-01-01 11:59:00', start: !!timestamp '2008-01-01 10:00:00',}
+  model: courses.lesson
+  pk: 1
+- fields: {building: 1, infinite_room: false,
+    name: U1}
+  model: buildings.classroom
+  pk: 1
+- fields: {name: Kosil}
+  model: buildings.building
+  pk: 1
+- fields: {course: 1, name: xxx, }
+  model: courses.expensegroup
+  pk: 1
+- fields: {end: null, expense_group: 1, price: '30', start: 2009-08-03}
+  model: courses.expensegroupprice
+  pk: 1
+- fields: {description: a;fjkasdf, max_points: 100, name: xxx}
+  model: testing.test
+  pk: 1
+- fields: {contract_number: '10', hour_rate: '300', lector: 1, 
+start: 2008-01-01, end: 2008-01-01}
+  model: lectors.contract
+  pk: 1
+- fields: {course: 1, end: null, expense_group: 1, start: 2008-01-01, student: 1}
+  model: courses.coursemember
+  pk: 1
+- fields: {course: 1, end: null, expense_group: 1, start: 2008-01-01, student: 1}
+  model: courses.coursemember
+  pk: 2
+- fields: {course: 1, end: null, expense_group: 2, start: 2008-01-01, student: 1}
+  model: courses.coursemember
+  pk: 3
+- fields: {course: 1, created: !!timestamp '2009-08-03 13:45:44.189657', name: xxx1,
+    updated: !!timestamp '2009-08-03 13:45:44.189712'}
+  model: courses.expensegroup
+  pk: 1
+- fields: {course: 1, created: !!timestamp '2009-08-03 13:45:44.189657', name: xxx2,
+    updated: !!timestamp '2009-08-03 13:45:44.189712'}
+  model: courses.expensegroup
+  pk: 2
+- fields: {created: !!timestamp '2009-08-03 13:45:44.199993', end: null, expense_group: 1,
+    price: '60', start: 2008-01-01, updated: !!timestamp '2009-08-03 13:45:44.200047'}
+  model: courses.expensegroupprice
+  pk: 1
+- fields: {created: !!timestamp '2009-08-03 13:45:44.199993', end: null, expense_group: 2,
+    price: '60', start: 2008-01-01, updated: !!timestamp '2009-08-03 13:45:44.200047'}
+  model: courses.expensegroupprice
+  pk: 2

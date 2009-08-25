@@ -1,0 +1,17 @@
+{% extends "base_test.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url test-create %}">{% trans "Add test" %}</a>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for test in test_list %}
+		<tr>
+			<td><a href="{{ test.get_absolute_url }}">{{ test }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
