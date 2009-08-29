@@ -22,6 +22,6 @@ urlpatterns = patterns('',
      url(r'^company/', include('companies.urls')),
      url(r'^test/', include('testing.urls')),
      url(r'^$', direct_to_template, {'template':'base.html'}),
-#     url(r'^invoice/', include('invoice.urls')),
+     url(r'^invoice/', include('invoices.urls')),
 #     url(r'^management/', include('management.urls')),
 )

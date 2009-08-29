@@ -1,0 +1,21 @@
+{% extends "base_invoice.html" %}
+{% load i18n %}
+
+{% block body %}
+<a href="{% url invoice-create %}">{% trans "Add invoice" %}</a>
+<form action="." method="POST">
+<div>{{ action_form.action.label_tag }}:{{ action_form.action }} <input type="submit" value="{% trans "Do!" %}"/></div>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	{% for invoice in invoice_list %}
+		<tr>
+			<td><input type="checkbox" name="objects" value="{{ invoice.pk }}"/></td>
+			<td><a href="{{ invoice.get_absolute_url }}">{{ invoice }}</a></td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</form>
+{% endblock %}

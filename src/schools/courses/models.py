@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.db import models
 from django.db.models import permalink
 from django.db.models.query_utils import Q
+from django.utils import dateformat
 
 # Create your models here.
 class Course(models.Model):
@@ -38,15 +39,15 @@ class Course(models.Model):
 def course_member_price(course_member, start, end, all_members=None):    
     prices = ExpenseGroupPrice.objects.filter(
               Q(end__gte=start) | Q(end__isnull=True),
-            start__lte=end, expense_group__coursemember=course_member, )
+            start__lte=end, expense_group__coursemember=course_member,)
     if not prices:
         raise Exception('No price for %s at %s - %s.' % (course_member, start, end))
     
     if all_members is None:
         all_members = course_member.expense_group.coursemember_set.filter(
-                    Q(end__gte=start) | Q(end__isnull=True), start__lte=end, )
+                    Q(end__gte=start) | Q(end__isnull=True), start__lte=end,)
     else:
-        all_members = filter(lambda a:a.expense_group==course_member.expense_group, all_members)
+        all_members = filter(lambda a:a.expense_group == course_member.expense_group, all_members)
     all_members_count = Decimal(len(all_members))
     
     if not all_members_count:
@@ -54,7 +55,7 @@ def course_member_price(course_member, start, end, all_members=None):
     
     delta = end - start
     delta_hours = Decimal(delta.days * 24) + Decimal(str(delta.seconds / 3600.0))
-    return delta_hours * prices[0].price /  all_members_count
+    return delta_hours * prices[0].price / all_members_count
 
 class CourseMember(models.Model):
     from schools.students.models import Student
@@ -127,7 +128,7 @@ def course_members_on_lesson(course, start, end):
         Return queryset of all course members who should be 
         on lesson belonging to the course on specified time.
     '''
-    return CourseMember.objects.filter(Q(end__isnull=True)|Q(end__gte=start), course=course, start__lte=end)
+    return CourseMember.objects.filter(Q(end__isnull=True) | Q(end__gte=start), course=course, start__lte=end)
     
 class AttendanceList(models.Model):
     from schools.lectors.models import Lector
@@ -153,10 +154,24 @@ class AttendanceList(models.Model):
     def new_course_members(self):
         course_members = CourseMember.objects.exclude(lessonattendee=self)
         return [LessonAttendee(attendance_list=self, course_member=a, present=False) for a in course_members]
-           
     
+    def __unicode__(self):
+        start_format = 'd.m.Y H:i'
+        end_format = 'H:i' if self.start.date() == self.end.date() else start_format
+        date_string = '%s - %s' % (dateformat.format(self.start, start_format),
+                                   dateformat.format(self.end, end_format))
+        return u'%s (%s)' % (self.classroom, date_string)
+           
+class LessonAttendeeManager(models.Manager):
+    def for_invoice(self, company, start, end):
+        queryset = self.get_query_set()
+        queryset = queryset.filter(course_member__student__company=company,
+                                   attendance_list__end__range=(start, end))
+        return queryset
     
 class LessonAttendee(models.Model):
+    from schools.invoices.models import Invoice
+    objects = LessonAttendeeManager()
     attendance_list = models.ForeignKey('AttendanceList')
     course_member = models.ForeignKey('CourseMember')
     
@@ -165,6 +180,10 @@ class LessonAttendee(models.Model):
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    invoice = models.ForeignKey(Invoice, null=True, blank=True)
+    def __unicode__(self):
+        return u'%s - %s' % (self.course_member, self.attendance_list)
     
 class ExpenseGroup(models.Model):
     name = models.CharField(max_length=100)

@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext as _
 from django.views.generic import list_detail
+from django.forms.models import ModelMultipleChoiceField
+from django.forms.widgets import SelectMultiple
 
 
 def object_list(request, **kwargs):
@@ -30,6 +32,24 @@ class ActionForm(forms.Form):
         super(ActionForm, self).__init__(*args, **kwargs)
         self.fields['objects'].queryset = queryset
         self.fields['action'].choices = [('', "---------")] + actions
+        
+class ModelSelectForm(forms.Form):
+    '''
+        Model for generic select table.
+    '''
+    def __init__(self, queryset, *args, **kwargs):
+        widget = self._pop(kwargs, 'widget', SelectMultiple)
+        label = self._pop(kwargs, 'label')
+        
+        super(ModelSelectForm, self).__init__(*args, **kwargs)
+        
+        self.fields['objects'] = ModelMultipleChoiceField(queryset=queryset, 
+                                  widget=widget, label=label)
+    
+    def _pop(self, kwargs, name, default_value=None):
+        if name in kwargs:
+            return kwargs.pop(name)
+        return default_value
         
 def serve_delete_action_form(request, queryset):
     '''

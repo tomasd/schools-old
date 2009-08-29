@@ -1,0 +1,18 @@
+{% extends "base_invoice.html" %}
+{% load i18n %}
+
+{% block body %}
+<form action="." method="POST">
+	<fieldset>
+		<legend>
+			{% blocktrans with step as step and step_count as step_count %}
+			Create invoice step {{ step }} of {{ step_count }}
+			{% endblocktrans %}
+		 </legend>
+	{{ form.as_p }}
+	<input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+	{{ previous_fields|safe }}
+	<input type="submit" value="{% trans "Next" %}"/><input type="reset" value="{% trans "Reset" %}"/>
+	</fieldset>
+</form>
+{% endblock %}
