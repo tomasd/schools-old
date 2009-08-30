@@ -8,4 +8,4 @@ class InvoicesNav(Nav):
     nav_group = 'main'
 #    options = [TestOption]
     
-#nav_groups.register(InvoicesNav)
+nav_groups.register(InvoicesNav)

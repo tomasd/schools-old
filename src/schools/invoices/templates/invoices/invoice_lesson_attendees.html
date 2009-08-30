@@ -1,11 +1,10 @@
 {% extends "base_invoice.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li><a href="{{ invoice.get_absolute_url }}">{% trans "Update invoice" %}</a></li>
-	<li><a href="{{ invoice.get_lesson_attendees_url }}">{% trans "Invoice lesson attendees" %}</a></li>
-</ul>
+{% activetab "invoice" "attendees" %}
+{% include "invoices/invoice_menu.html" %}
 
 <form action="." method="POST">
 	<fieldset>
