@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load tabs %}
+<ul>
+	<li>
+		<a href="{{ student.get_absolute_url }}" 
+			class="{% ifactivetab "student" "edit" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Update student" %}</a>
+	</li>
+</ul>
