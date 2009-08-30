@@ -1,13 +1,10 @@
 {% extends "base_course.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li><a href="{{ course.get_absolute_url }}">{% trans "Update course" %}</a></li>
-	<li>{% trans "Course members" %}</li> 
-	<li><a href="{{ course.course_lessons_url }}">{% trans "Lessons" %}</a></li>
-	<li><a href="{{ course.course_expense_groups_url }}">{% trans "Expense groups" %}</a></li>
-</ul>
+{% activetab "course" "members" %}
+{% include "courses/course_menu.html" %}
 
 {% load i18n %}
 

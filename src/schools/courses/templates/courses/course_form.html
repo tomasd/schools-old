@@ -1,13 +1,10 @@
 {% extends "base_course.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li>{% trans "Update course" %}</li>
-	<li><a href="{{ form.instance.course_members_url }}">{% trans "Members" %}</a></li>
-	<li><a href="{{ form.instance.course_lessons_url }}">{% trans "Lessons" %}</a></li>
-	<li><a href="{{ form.instance.course_expense_groups_url }}">{% trans "Expense groups" %}</a></li>
-</ul>
+{% activetab "course" "edit" %}
+{% include "courses/course_menu.html" %}
 
 <form action="." method="POST">
 	<fieldset>

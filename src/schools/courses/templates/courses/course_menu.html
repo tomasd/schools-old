@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load tabs %}
+<ul>
+	<li>
+		<a href="{{ course.get_absolute_url }}" 
+			class="{% ifactivetab "course" "edit" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Update course" %}</a>
+	</li>
+	<li>
+		<a href="{{ course.course_members_url }}" 
+			class="{% ifactivetab "course" "members" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Members" %}</a>
+	</li>
+	<li>
+		<a href="{{ course.course_lessons_url }}" 
+			class="{% ifactivetab "course" "lessons" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Lessons" %}</a>
+	</li>
+	<li>
+		<a href="{{ course.course_expense_groups_url }}" 
+			class="{% ifactivetab "course" "expense_groups" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Expense groups" %}</a>
+	</li>
+</ul>
