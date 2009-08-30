@@ -1,12 +1,11 @@
 {% extends "base_building.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li>{% trans "Update building" %}</li>
-	<li><a href="{% url classrooms building_id=form.instance.pk %}">{% trans "Building classrooms" %}</a></li> 
-	<li><a href="{% url building-expenses building_id=form.instance.pk %}">{% trans "Building expenses" %}</a></li> 
-</ul>
+
+{% activetab "building" "edit" %}
+{% include "buildings/building_menu.html" %}
 
 <form action="." method="POST">
 	<fieldset>

@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load tabs %}
+<ul>
+	<li>
+		<a href="{{ building.get_absolute_url }}" 
+			class="{% ifactivetab "building" "edit" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Update building" %}</a>
+	</li>
+	<li>
+		<a href="{{ building.get_classrooms_url }}"
+			class="{% ifactivetab "building" "classrooms" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Building classrooms" %}</a></li> 
+	<li><a href="{{ building.get_expenses_url }}"
+			class="{% ifactivetab "building" "expenses" %}active{% else %}inactive{% endifactivetab %}">
+		{% trans "Building expenses" %}</a></li> 
+</ul>

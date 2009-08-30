@@ -1,11 +1,10 @@
 {% extends "base_lector.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li><a href="{{ lector.get_absolute_url }}">{% trans "Update lector" %}</a></li>
-	<li><a href="{{ lector.contracts_url }}">{% trans "Contracts" %}</a></li>
-</ul>
+{% activetab "lector" "contracts" %}
+{% include "lectors/lector_menu.html" %}
 
 <form action="." method="POST">
 	<fieldset>

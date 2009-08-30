@@ -1,12 +1,14 @@
 {% extends "base_building.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block head %}
 	{{ form.media }}
-
 {% endblock %}
 
 {% block body %}
+{% activetab "building" "expenses" %}
+{% include "buildings/building_menu.html" %}
 
 
 <form action="." method="POST">

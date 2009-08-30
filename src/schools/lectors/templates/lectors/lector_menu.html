@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load tabs %}
+<ul>
+	<li>
+		<a href="{{ lector.get_absolute_url }}" 
+			class="{% ifactivetab "lector" "edit" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Update lector" %}</a>
+	</li>
+	<li>
+		<a href="{{ lector.contracts_url }}" 
+			class="{% ifactivetab "lector" "contracts" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Contracts" %}</a>
+	</li>
+</ul>

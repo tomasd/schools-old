@@ -1,10 +1,11 @@
 {% extends "base_company.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
-<ul>
-	<li>{% trans "Update company" %}</li>
-</ul>
+{% activetab "company" "edit" %}
+{% include "companies/company_menu.html" %}
+
 
 <form action="." method="POST">
 	<fieldset>
