@@ -92,6 +92,7 @@ class Lesson(models.Model):
     
     start = models.DateTimeField()
     end = models.DateTimeField()
+    invoiced = models.BooleanField()
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

@@ -3,7 +3,7 @@ from schools.courses.models import Course, CourseMember, Lesson, AttendanceList,
     ExpenseGroup, LessonAttendee
 from django.utils.translation import ugettext as _
 from django.forms.util import ValidationError
-from django.forms.widgets import HiddenInput, CheckboxSelectMultiple
+from django.forms.widgets import CheckboxSelectMultiple
 
 class CourseForm(forms.ModelForm):
     class Meta:

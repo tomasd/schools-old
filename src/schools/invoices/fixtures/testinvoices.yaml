@@ -1,0 +1,54 @@
+- fields: {created: !!timestamp '2009-07-19 11:47:10.555726', lector: 1, name: '',
+    note: '', responsible: 1, slug: '1234', updated: !!timestamp '2009-07-19 11:47:10.555776'}
+  model: courses.course
+  pk: 1
+- fields: {course: 1, created: !!timestamp '2009-08-03 13:46:36.582533', end: null,
+    expense_group: 1, start: 2008-01-01, student: 1, updated: !!timestamp '2009-08-04
+      11:37:51.828595'}
+  model: courses.coursemember
+  pk: 1
+- fields: {course: 1, created: !!timestamp '2009-08-03 15:06:24.176857', end: null,
+    expense_group: 1, start: 2008-01-01, student: 1, updated: !!timestamp '2009-08-04
+      11:37:57.427565'}
+  model: courses.coursemember
+  pk: 2
+- fields: {classroom: 1, course: 1, created: !!timestamp '2009-07-19 12:25:27.773005',
+    end: !!timestamp '2008-01-01 11:00:00', invoiced: true, start: !!timestamp '2008-01-01
+      10:00:00', updated: !!timestamp '2009-08-30 12:43:38.325337'}
+  model: courses.lesson
+  pk: 1
+- fields: {classroom: 1, content: '', created: !!timestamp '2009-08-30 03:20:53.530684',
+    end: !!timestamp '2008-01-01 11:00:00', lector: 1, lector_price: '300', lesson: 1,
+    start: !!timestamp '2008-01-01 10:00:00', updated: !!timestamp '2009-08-30 03:20:53.530724'}
+  model: courses.attendancelist
+  pk: 1
+- fields: {attendance_list: 1, course_member: 1, course_member_price: '250', created: !!timestamp '2009-08-30
+      03:20:53.566647', invoice: 1, present: true, updated: !!timestamp '2009-08-30
+      12:43:38.304684'}
+  model: courses.lessonattendee
+  pk: 1
+- fields: {attendance_list: 1, course_member: 2, course_member_price: '250', created: !!timestamp '2009-08-30
+      03:20:53.582132', invoice: 1, present: true, updated: !!timestamp '2009-08-30
+      12:43:38.311115'}
+  model: courses.lessonattendee
+  pk: 2
+- fields: {company: 1, created: !!timestamp '2009-07-19 11:47:24.456641', email: '',
+    fax: '', first_name: tomas, last_name: tomas, mobile: '', phone: '', postal: '',
+    street: '', title: '', town: '', updated: !!timestamp '2009-08-27 12:24:12.543063',
+    www: ''}
+  model: students.student
+  pk: 1
+- fields: {created: !!timestamp '2009-08-03 10:52:52.792531', dic: '', email: '',
+    fax: '', ic_dph: '', ico: '', mobile: '', name: company1, phone: '', postal: '',
+    street: '', town: '', updated: !!timestamp '2009-08-03 10:52:52.792591', www: ''}
+  model: companies.company
+  pk: 1
+- fields: {building: 1, created: !!timestamp '2009-07-19 12:25:10.553999', infinite_room: false,
+    name: U1, updated: !!timestamp '2009-07-19 12:25:10.554049'}
+  model: buildings.classroom
+  pk: 1
+- fields: {created: !!timestamp '2009-07-19 12:25:01.785112', name: Kosil, postal: '',
+    street: '', town: '', updated: !!timestamp '2009-07-19 12:25:01.785200'}
+  model: buildings.building
+  pk: 1
+  
