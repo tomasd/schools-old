@@ -1,6 +1,7 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.formtools.wizard import FormWizard
+from django.core.urlresolvers import reverse
 from django.forms.widgets import CheckboxSelectMultiple
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -8,8 +9,8 @@ from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
 from schools import ModelSelectForm
 from schools.courses.models import LessonAttendee
-from schools.invoices.forms import InvoiceForm
-from schools.invoices.models import Invoice
+from schools.invoices.forms import InvoiceForm, GenerateInvoiceForm
+from schools.invoices.models import Invoice, create_invoices
 
 class CreateInvoiceWizard(FormWizard):
     def get_template(self, step):
@@ -50,6 +51,19 @@ class CreateInvoiceWizard(FormWizard):
 @login_required
 def create_invoice(request):
     return CreateInvoiceWizard([InvoiceForm, ModelSelectForm])(request)
+
+@login_required
+def generate_invoice(request):
+    if request.method == 'POST':
+        form = GenerateInvoiceForm(request.POST)
+        if form.is_valid():
+            create_invoices(start=form.cleaned_data['start'], end=form.cleaned_data['end'])
+            return HttpResponseRedirect(reverse('invoices'))
+    else:
+        form = GenerateInvoiceForm()
+    return render_to_response('invoices/generate_invoices.html', 
+                              {'form':form}, 
+                              context_instance=RequestContext(request))
 
 @login_required
 def invoice_lesson_attendees(request, object_id):

@@ -21,7 +21,7 @@ urlpatterns = patterns('buildings.views',
                 form_class=BuildingForm,
                 login_required=True,
                 template_object_name='building',), name='building-detail'),
-   url(r'/$', object_list, {'queryset':Building.objects.all(), 
+   url(r'$', object_list, {'queryset':Building.objects.all(), 
                            'login_required':True,
                            'template_object_name':'building'}, name='buildings'),
 )

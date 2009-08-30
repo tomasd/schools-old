@@ -1,0 +1,9 @@
+{% extends "base_invoice.html" %}
+{% load i18n %}
+
+{% block body %}
+	<form action="." method="POST">
+		{{ form.as_p }}
+		<input type="submit" value="{% trans "Generate invoices" %}"/>
+	</form>
+{% endblock %}

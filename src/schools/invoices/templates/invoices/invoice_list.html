@@ -3,6 +3,7 @@
 
 {% block body %}
 <a href="{% url invoice-create %}">{% trans "Add invoice" %}</a>
+<a href="{% url invoice-generate %}">{% trans "Generate invoices" %}</a>
 <form action="." method="POST">
 <div>{{ action_form.action.label_tag }}:{{ action_form.action }} <input type="submit" value="{% trans "Do!" %}"/></div>
 <table>
