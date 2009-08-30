@@ -12,7 +12,7 @@ urlpatterns = patterns('',
         
    url(r'(?P<object_id>\d+)/$', update_object,
        {'form_class':TestForm, 'login_required':True}, name='test-detail'),
-   url(r'$', object_list,
+   url(r'/$', object_list,
        {'login_required':True,
         'template_object_name':'test',
         'queryset':Test.objects.all()}, name='tests'),

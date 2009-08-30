@@ -167,7 +167,7 @@ class LessonAttendeeManager(models.Manager):
         queryset = self.get_query_set()
         queryset = queryset.filter(course_member__student__company=company,
                                    attendance_list__end__range=(start, end))
-        return queryset
+        return queryset.filter(invoice__isnull=True)
     
 class LessonAttendee(models.Model):
     from schools.invoices.models import Invoice

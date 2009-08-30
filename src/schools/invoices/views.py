@@ -1,16 +1,17 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.contrib.formtools.wizard import FormWizard
-from schools import ModelSelectForm
-from schools.invoices.forms import InvoiceForm
-from schools.courses.models import LessonAttendee
 from django.forms.widgets import CheckboxSelectMultiple
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
+from schools import ModelSelectForm
+from schools.courses.models import LessonAttendee
+from schools.invoices.forms import InvoiceForm
+from schools.invoices.models import Invoice
 
 class CreateInvoiceWizard(FormWizard):
-    def done(self, request, form_list):
-        pass
-    
     def get_template(self, step):
         return 'invoices/invoice_create_%d.html' % step
     
@@ -22,9 +23,9 @@ class CreateInvoiceWizard(FormWizard):
             initial['objects'] = [a.pk for a in queryset]
             print initial
             # create ModelSelectForm
-            return form(queryset=queryset, data=data, 
-                        prefix=self.prefix_for_step(step), 
-                        initial=initial, 
+            return form(queryset=queryset, data=data,
+                        prefix=self.prefix_for_step(step),
+                        initial=initial,
                         widget=CheckboxSelectMultiple,
                         label=_('Lessons'))
         return super(CreateInvoiceWizard, self).get_form(step, data)
@@ -40,9 +41,25 @@ class CreateInvoiceWizard(FormWizard):
     def done(self, request, form_list):
         [invoice_form] = [a for a in form_list if isinstance(a, InvoiceForm)]
         [attendees_form] = [a for a in form_list if isinstance(a, ModelSelectForm)]
-        invoice = invoice_form.save(commit=False)
+        invoice = invoice_form.save()
         
-        return 
+        invoice.lessonattendee_set = attendees_form.cleaned_data['objects']
+        
+        return HttpResponseRedirect(invoice.get_absolute_url())
+    
 @login_required
 def create_invoice(request):
     return CreateInvoiceWizard([InvoiceForm, ModelSelectForm])(request)
+
+@login_required
+def invoice_lesson_attendees(request, object_id):
+    invoice = get_object_or_404(Invoice, pk=object_id)
+    queryset = invoice.lessonattendee_set.all()
+    if request.method == 'POST':
+        form = ModelSelectForm(data=request.POST, queryset=queryset, initial={'objects':[a.pk for a in queryset]}, widget=CheckboxSelectMultiple, label=_('Lessons'))
+        if form.is_valid():
+            invoice.lessonattendee_set = form.cleaned_data['objects']
+    else:
+        form = ModelSelectForm(queryset=queryset, initial={'objects':[a.pk for a in queryset]}, widget=CheckboxSelectMultiple, label=_('Lessons'))
+    return render_to_response('invoices/invoice_lesson_attendees.html',
+                  {'form':form, 'invoice':invoice}, context_instance=RequestContext(request))

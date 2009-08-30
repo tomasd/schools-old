@@ -22,7 +22,7 @@ urlpatterns = patterns('courses.views',
 
    url(r'(?P<slug>[-\w]+)/$', update_object,
        {'form_class':CourseForm, 'login_required':True}, name='course-detail'),
-   url(r'$', object_list, 
+   url(r'/$', object_list, 
        {'login_required':True,
         'template_object_name':'course',
         'queryset':Course.objects.all()}, name='courses'),

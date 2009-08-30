@@ -13,7 +13,7 @@ urlpatterns = patterns('',
                 form_class=CompanyForm,
                 login_required=True,
                 template_object_name='company',), name='company-detail'),
-   url(r'$', object_list, {'template_object_name':'company',
+   url(r'/$', object_list, {'template_object_name':'company',
                            'login_required':True, 
                            'queryset':Company.objects.all()}, name='companies'),
 )
