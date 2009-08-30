@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load tabs %}
+<ul>
+	<li>
+		<a href="{{ company.get_absolute_url }}" 
+			class="{% ifactivetab "company" "edit" %}active{% else %}inactive{% endifactivetab %}">
+			{% trans "Update company" %}</a>
+	</li>
+</ul>

@@ -1,7 +1,11 @@
 {% extends "base_building.html" %}
 {% load i18n %}
+{% load tabs %}
 
 {% block body %}
+{% activetab "building" "classrooms" %}
+{% include "buildings/building_menu.html" %}
+
 <form action="." method="POST">
 	<fieldset>
 		<legend>{% trans "Create classroom" %}</legend>

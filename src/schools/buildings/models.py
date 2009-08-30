@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.db.models import permalink
 
 # Create your models here.
 class Classroom(models.Model):
@@ -34,6 +35,14 @@ class Building(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('building-detail', (), {'object_id':str(self.pk)})
+    
+    @permalink
+    def get_classrooms_url(self):
+        return ('classrooms', (), {'building_id':str(self.pk)})
+    
+    @permalink
+    def get_expenses_url(self):
+        return ('building-expenses', (), {'building_id':str(self.pk)})
     
 
 class BuildingMonthExpense(models.Model):

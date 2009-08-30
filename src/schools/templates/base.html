@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load nav %}
 <html>
 <head>
 <style type="text/css">
@@ -8,21 +9,22 @@
         -moz-border-radius: 8px;
         border-radius: 8px;
 	}
+	ul.user-nav li {
+		display: inline;
+	}
 </style>
 {% block base_head %}
 {% endblock %}
 </head>
 <body>
-<ul>
-	<li><a href="{% url buildings %}">{% trans "Buildings" %}</a></li>
-	<li><a href="{% url companies %}">{% trans "Companies" %}</a></li>
-	<li><a href="{% url courses %}">{% trans "Courses" %}</a></li>
-	<li><a href="{% url lectors %}">{% trans "Lectors" %}</a></li>
-	<li><a href="{% url tests %}">{% trans "Tests" %}</a></li>
-	<li><a href="{% url students %}">{% trans "Students" %}</a></li>
-</ul>
-<hr/>
-{% block base_body %}
-{% endblock %}
+	{% get_nav "main" as user_nav %}
+	<ul class="user-nav">
+	{% for nav in user_nav %}
+	    {{ nav }}
+	{% endfor %}
+	</ul>
+	<hr/>
+	{% block base_body %}
+	{% endblock %}
 </body>
 </html>

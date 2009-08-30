@@ -3,7 +3,10 @@ from django.conf.urls.defaults import * #@UnusedWildImport
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
+import django_nav
+
 admin.autodiscover()
+django_nav.autodiscover()
 
 urlpatterns = patterns('',
     # Example:
