@@ -14,6 +14,7 @@ class ClassroomForm(forms.ModelForm):
         
         
 class BuildingMonthExpenseForm(forms.ModelForm):
+    start = forms.DateField(widget=AdminDateWidget)
     class Meta:
         fields = ('start', 'end', 'price')
         model = BuildingMonthExpense

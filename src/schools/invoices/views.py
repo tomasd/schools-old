@@ -77,3 +77,8 @@ def invoice_lesson_attendees(request, object_id):
         form = ModelSelectForm(queryset=queryset, initial={'objects':[a.pk for a in queryset]}, widget=CheckboxSelectMultiple, label=_('Lessons'))
     return render_to_response('invoices/invoice_lesson_attendees.html',
                   {'form':form, 'invoice':invoice}, context_instance=RequestContext(request))
+
+@login_required
+def invoice_overview(request):
+    
+    return render_to_response('invoices/invoice_overview.html', {}, context_instance=RequestContext(request))

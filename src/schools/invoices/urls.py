@@ -9,6 +9,7 @@ urlpatterns = patterns('invoices.views',
 #   url(r'(?P<invoice_slug>[-\w]+)/$', 'invoice_detail', name='invoice-detail'),
     url(r'^create/$', 'create_invoice', name='invoice-create'),
     url(r'^generate/$', 'generate_invoice', name='invoice-generate'),
+    url(r'^overview/$', 'invoice_overview', name='invoice-overview'),
     url(r'(?P<object_id>\d+)/attendees/$', 'invoice_lesson_attendees', name='invoice-lesson-attendees'),
     url(r'(?P<object_id>\d+)/$', update_object, dict(
                 form_class=InvoiceForm,
