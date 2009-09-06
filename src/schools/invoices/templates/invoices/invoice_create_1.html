@@ -1,6 +1,10 @@
 {% extends "base_invoice.html" %}
 {% load i18n %}
 
+{% block head %}
+	{{ form.media }}
+{% endblock %}
+
 {% block body %}
 <form action="." method="POST">
 	<fieldset>

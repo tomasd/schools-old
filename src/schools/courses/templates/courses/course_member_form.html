@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load tabs %}
 
+{% block head %}
+	{{ form.media }}
+{% endblock %}
+
 {% block body %}
 {% activetab "course" "edit" %}
 {% include "courses/course_menu.html" %}

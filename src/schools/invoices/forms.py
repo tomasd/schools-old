@@ -2,14 +2,17 @@ from django import forms
 from schools.invoices.models import Invoice
 from django.forms.util import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.admin.widgets import AdminDateWidget
 
 class InvoiceForm(forms.ModelForm):
+    start = forms.DateField(label=_('Start'), widget=AdminDateWidget)
+    end = forms.DateField(label=_('End'), widget=AdminDateWidget)
     class Meta:
         model = Invoice
         
 class GenerateInvoiceForm(forms.Form):
-    start = forms.DateField()
-    end = forms.DateField()
+    start = forms.DateField(widget=AdminDateWidget)
+    end = forms.DateField(widget=AdminDateWidget)
     
     def clean(self):
         if not self.errors:

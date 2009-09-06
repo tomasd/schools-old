@@ -48,7 +48,8 @@ MEDIA_URL = ''
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/admin/media/'
+ADMIN_URL='/admin/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-)74aah-u$ky1t55uji#m73az+z8pg877_y7a&j@8w_f2iyivf'
@@ -92,10 +93,12 @@ INSTALLED_APPS = (
     'management',
     'django_nav',
     'tabs',
+    'app',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.auth",
 "django.core.context_processors.debug",
 "django.core.context_processors.i18n",
 "django.core.context_processors.media",
-"django.core.context_processors.request")
+"django.core.context_processors.request",
+'schools.app.processors.settings_processor',)

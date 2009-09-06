@@ -2,17 +2,35 @@
 {% load nav %}
 <html>
 <head>
-<style type="text/css">
-	fieldset {
-		padding: 1em;
-        border: 1px solid #97D2F5;
-        -moz-border-radius: 8px;
-        border-radius: 8px;
-	}
-	ul.user-nav li {
-		display: inline;
-	}
-</style>
+	<style type="text/css">
+		fieldset {
+			padding: 1em;
+	        border: 1px solid #97D2F5;
+	        -moz-border-radius: 8px;
+	        border-radius: 8px;
+		}
+		ul.user-nav li {
+			display: inline;
+		}
+		.vDateField + span a, .vTimeField + span a, .calendar-shortcuts a, .calendar a, .calendar-cancel a {
+			text-decoration: none;
+		}
+		.vDateField + span img, .vTimeField + span img {
+			border: 0px;
+		}
+		.module h2, .module caption, .inline-group h2 {
+			background:#7CA0C7 url(../img/admin/default-bg.gif) repeat-x scroll left top;
+			color:white;
+			font-size:11px;
+			font-weight:bold;
+			margin:0;
+			padding:2px 5px 3px;
+			text-align:left;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="{{ ADMIN_MEDIA_PREFIX }}css/widgets.css" />
+	<script type="text/javascript" src="{{ ADMIN_URL }}jsi18n/"></script>
+	<script type="text/javascript" src="{{ ADMIN_MEDIA_PREFIX }}js/core.js"></script>
 {% block base_head %}
 {% endblock %}
 </head>

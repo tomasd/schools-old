@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load tabs %}
 
+{% block head %}
+	{{ form.media }}
+{% endblock %}
+
 {% block body %}
 {% activetab "test" "edit" %}
 {% include "testing/testing_menu.html" %}

@@ -1,9 +1,10 @@
 from django import forms
 from schools.courses.models import Course, CourseMember, Lesson, AttendanceList, \
     ExpenseGroup, LessonAttendee
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.forms.util import ValidationError
 from django.forms.widgets import CheckboxSelectMultiple
+from django.contrib.admin.widgets import AdminDateWidget, AdminSplitDateTime
 
 class CourseForm(forms.ModelForm):
     class Meta:
@@ -13,6 +14,7 @@ class CourseMemberCreateForm(forms.ModelForm):
     price = forms.DecimalField(label=_('Price'), required=False,
                help_text=_('When filled, expense group is created for this course member.'))
     expense_group = forms.ModelChoiceField(queryset=ExpenseGroup.objects.none(), label=_('Expense group'), required=False)
+    start = forms.DateField(label=_('Start'), widget=AdminDateWidget)
     
     def __init__(self, course, *args, **kwargs):
         super(CourseMemberCreateForm, self).__init__(*args, **kwargs)
@@ -28,23 +30,29 @@ class CourseMemberCreateForm(forms.ModelForm):
         return self.cleaned_data
         
 class CourseMemberForm(forms.ModelForm):
+    start = forms.DateField(label=_('Start'), widget=AdminDateWidget)
+    end = forms.DateField(label=_('End'), widget=AdminDateWidget)
     class Meta:
         fields = ('student', 'start', 'end', 'expense_group')
         model = CourseMember
 
 class LessonForm(forms.ModelForm):
+    start = forms.DateTimeField(label=_('Start'), widget=AdminSplitDateTime)
+    end = forms.DateTimeField(label=_('End'), widget=AdminSplitDateTime)
     class Meta:
         fields = ('classroom', 'start', 'end')
         model = Lesson
         
 class AttendanceListForm(forms.ModelForm):
+    start = forms.DateTimeField(label=_('Start'), widget=AdminSplitDateTime)
+    end = forms.DateTimeField(label=_('End'), widget=AdminSplitDateTime)
     class Meta:
         fields = ('classroom', 'lector', 'start', 'end', 'content',)
         model = AttendanceList
         
 class ExpenseGroupCreateForm(forms.ModelForm):
-    start = forms.DateField(label=_('Start'))
-    end = forms.DateField(label=_('End'), required=False)
+    start = forms.DateField(label=_('Start'), widget=AdminDateWidget)
+    end = forms.DateField(label=_('End'), required=False, widget=AdminDateWidget)
     price = forms.DecimalField(label=_('Price'))
     class Meta:
         fields = ('name',)

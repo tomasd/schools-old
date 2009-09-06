@@ -103,7 +103,8 @@ class LessonTest(TestCase):
         course = Course.objects.get(pk=1)
         count = course.lesson_set.count()
         response = self.client.post(reverse('course-lessons', kwargs={'slug':course.slug}),
-                                    {'classroom':'1', 'start':'2008-01-01', 'end':'2008-01-01'})
+                                    {'classroom':'1', 'start_0':'2008-01-01', 'end_0':'2008-01-01',
+                                     'start_1':'01:00','end_1':'02:00'})
         self.assertRedirects(response, Lesson.objects.latest('created').get_absolute_url())
         eq_(count + 1, course.lesson_set.count())
     
@@ -112,7 +113,8 @@ class LessonTest(TestCase):
         eq_(200, response.status_code)
         
         response = self.client.post(Lesson.objects.get(pk=1).get_absolute_url(),
-                                    {'classroom':'1', 'start':'2008-01-01', 'end':'2008-01-01'})
+                                    {'classroom':'1', 'start_0':'2008-01-01', 'end_0':'2008-01-01',
+                                     'start_1':'01:00','end_1':'02:00'})
         self.assertRedirects(response, Lesson.objects.get(pk=1).get_absolute_url())
         
     def testAttendaceList(self):
@@ -128,7 +130,7 @@ class LessonTest(TestCase):
         response = self.client.get(lesson.get_attendance_list_url())
         eq_(200, response.status_code)
         
-        data = {'classroom':'1', 'start':'2008-01-01', 'end':'2008-01-01 01:00',
+        data = {'classroom':'1', 'start_0':'2008-01-01', 'start_1':'00:00', 'end_0':'2008-01-01', 'end_1':'01:00',
                      'lector':'1', 'course_members':['1','2']}
         
         response = self.client.post(lesson.get_attendance_list_url(), data)

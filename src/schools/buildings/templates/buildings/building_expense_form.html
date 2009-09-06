@@ -2,15 +2,13 @@
 {% load i18n %}
 {% load tabs %}
 
+{% block head %}
+	{{ form.media }}
+{% endblock %}
+
 {% block body %}
 {% activetab "building" "expenses" %}
 {% include "buildings/building_menu.html" %}
-
-<ul>
-	<li><a href="{{ building.get_absolute_url }}">{% trans "Update building" %}</a></li>
-	<li><a href="{% url classrooms building_id=building.pk %}">{% trans "Building classrooms" %}</a></li> 
-	<li><a href="{% url building-expenses building_id=building.pk %}">{% trans "Building expenses" %}</a></li>
-</ul>
 
 <form action="." method="POST">
 	<fieldset>
